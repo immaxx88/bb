@@ -1,4 +1,4 @@
-package com.app.employee.employee.dto;
+package com.buildbooster.dto;
 
 public class Employee {
 

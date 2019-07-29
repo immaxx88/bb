@@ -1,4 +1,4 @@
-package com.app.employee.employee.model;
+package com.buildbooster.model;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -36,7 +36,7 @@ public class Store {
 	@NotBlank
 	private String logo;
 	
-	@NotNull(message= "salary may not be empty")
+	@NotNull(message= "ID required")
 	private Long business_details_id;
 	
 	@NotBlank

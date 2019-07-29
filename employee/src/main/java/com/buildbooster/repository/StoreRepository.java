@@ -1,9 +1,9 @@
-package com.app.employee.employee.repository;
+package com.buildbooster.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.app.employee.employee.model.Store;
+import com.buildbooster.model.Store;
 
 @Repository
 public interface StoreRepository extends JpaRepository<Store, Long> {

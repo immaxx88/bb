@@ -1,4 +1,4 @@
-package com.app.employee.employee.controller;
+package com.buildbooster.controller;
 
 import java.util.List;
 
@@ -14,57 +14,76 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-//import com.app.employee.employee.model.Employee;
-import com.app.employee.employee.model.Store;
-//import com.app.employee.employee.service.EmployeeService;
-import com.app.employee.employee.service.StoreService;
+
+import com.buildbooster.model.SecurityAnswers;
+import com.buildbooster.model.SecurityQuestions;
+import com.buildbooster.model.Store;
+import com.buildbooster.service.SecurityAnswersService;
+import com.buildbooster.service.SecurityQuestionsService;
+import com.buildbooster.service.StoreService;
 
 
 @RestController
-@RequestMapping("/buildbooster")
-public class EmployeeController {
-	//@Autowired
-	//EmployeeService employeeService;
+@RequestMapping("/api")
+public class Controller {
 	
 	@Autowired
 	StoreService storeService;
-	
-//	@Autowired
-	
-	
-	
+	@Autowired
+	SecurityQuestionsService securityQuestionsService;
+	@Autowired
+	SecurityAnswersService securityAnswersService;
+
+	//***********************Create Store***********************
 	//Create Store
-	@PostMapping("store")
+	@PostMapping("/store")
 	public Store createStore(@Valid @RequestBody Store store) {
 		storeService.saveStore(store);
 		return store;
 	}
 	
-	//Create Employee
-//	@PostMapping("/employees")
-//	public Employee createEmployee(@Valid @RequestBody Employee emp) {
-//		employeeService.saveEmployee(emp);
-//		return emp; 
-//	}
-	
+	//***********************Get All Stores***********************
 	//Get Store
-	@GetMapping("store")
+	@GetMapping("/store")
 	public List<Store> getStore()
 	{
 		List<Store> store = storeService.getAllStore();
 		return store;
 	}
 	
-	//Get Employee
-//	  @GetMapping("/employees") 
-//	  public List<Employee> getAllEmployee()
-//	  { 
-//		   List<Employee> emp = employeeService.getAllEmployee(); 
-//		  return emp ;
-//	  }
+	//***********************Create Questions***********************
+	@PostMapping("/question")
+	public SecurityQuestions createQuestion(@RequestBody SecurityQuestions secQues)
+	{
+		securityQuestionsService.saveQuestions(secQues);
+		return secQues;
+		
+	}
+	
+	//***********************Get All Questions***********************
+	@GetMapping("/question")
+	public List<SecurityQuestions> getQuestions(){
+		List<SecurityQuestions> secQues = securityQuestionsService.getAllQuestions();
+		return secQues;
+	}
+	
+	//*************************Post a Answer*****************************
+	@PostMapping("/answers")
+	public SecurityAnswers createAnswers(@RequestBody SecurityAnswers secAns)
+	{
+		securityAnswersService.saveAnswer(secAns);
+		return secAns;
+	}
+	
+	//************************Get all Answer********************************
+	@GetMapping("/answers")
+	public List<SecurityAnswers> getAllAnswers()
+	{
+		List<SecurityAnswers> securityAnswer = securityAnswersService.getAllAnswers();
+		return securityAnswer;
+	}
 	
 	
-	  
 	  //Get Employee By ID
 //	  @GetMapping("employees/{id}") 
 //	  public ResponseEntity<Employee> getEmployeeByID(@PathVariable(value="id") Long empid) 
